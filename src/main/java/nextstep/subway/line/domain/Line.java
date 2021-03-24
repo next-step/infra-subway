@@ -107,6 +107,7 @@ public class Line extends BaseEntity implements Serializable {
             station = nextSection.getDownStation();
             stations.add(station);
         }
+        stations.remove(null);
         return stations;
     }
 
