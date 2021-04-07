@@ -16,6 +16,13 @@ jobs:
           token: ${{ secrets.ACCESS_TOKEN }}
           submodules: recursive
 
+      - name: java setup
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt' # See 'Supported distributions' for available options
+          java-version: '11'
+        run: java -cp java HelloWorldApp
+
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
