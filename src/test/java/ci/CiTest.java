@@ -10,8 +10,8 @@ public class CiTest {
     @DisplayName("Bearer Auth")
     @Test
     void ciTest() {
-        // build by github action fail test
-        // assertThat(1).isEqualTo(2);
+         // build by github action fail test
+         assertThat(1).isEqualTo(2);
     }
 
 }
