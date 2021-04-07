@@ -67,8 +67,7 @@ jobs:
       - name: docker image build and push
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: ${{ secrets.DOCKER_USERNAME }}/infra-subway
+          name: fistkim101/infra-subway/infra-subway
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          dockerfile: ./Dockerfile
-          tags: "latest"
+          registry: docker.pkg.github.com
