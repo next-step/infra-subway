@@ -19,6 +19,7 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
+      # build시 로그상 성공이나 lib에 jar가 미생성
       - name: Build with Gradle
         run: ./gradlew build
 
