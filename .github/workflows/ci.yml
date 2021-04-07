@@ -9,7 +9,7 @@ on:
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
-    name: build and test
+    name: gradle build and test
     steps:
       - name: checks-out this repository under GITHUB_WORKSPACE(enable to access)
         uses: actions/checkout@v2
@@ -65,9 +65,8 @@ jobs:
 #          push: true
 #          tags: ${{ secrets.DOCKER_USERNAME }}/infra-subway:latest
       - name: docker image build and push
-        uses: zenato/docker-action@master
+        uses: elgohr/Publish-Docker-Github-Action@master
         with:
+          name: ${{ secrets.DOCKER_USERNAME }}/infra-subway
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: ${{ secrets.DOCKER_USERNAME }}/infra-subway
-          tag: latest
