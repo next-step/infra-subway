@@ -23,13 +23,11 @@ jobs:
         run: ./gradlew build
 
       - name: Slack Notify
-          if: failure()
-          uses: rtCamp/action-slack-notify@v2.1.0
-          env:
-            SLACK_CHANNEL: group-dev
-            SLACK_COLOR: '#FF2D00'
-            SLACK_USERNAME: 'Github Action'
-            SLACK_ICON: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
-            SLACK_TITLE: Build Failure - ${{ github.event.push.title }}
-            SLACK_MESSAGE: PR Url - ${{ github.event.push.url }}
-            SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+        steps:
+          - uses: 8398a7/action-slack@v3
+            with:
+              status: ${{ job.status }}
+              fields: repo,message,commit,author,action,eventName,ref,workflow,job,took # selectable (default: repo,message)
+            env:
+              SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
+            if: always() # Pick up events even if the job fails or is canceled.

@@ -11,7 +11,7 @@ public class CiTest {
     @Test
     void ciTest() {
          // build by github action fail test
-          assertThat(1).isEqualTo(2);
+         // assertThat(1).isEqualTo(2);
     }
 
 }
