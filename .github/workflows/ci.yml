@@ -62,5 +62,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
+          file: ./dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/infra-subway:latest
