@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checks-out this repository under $GITHUB_WORKSPACE(enable to access)
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
 #        with:
 #          token: ${{ secrets.ACCESS_TOKEN }}
 #          submodules: recursive
