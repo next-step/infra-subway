@@ -23,6 +23,7 @@ jobs:
         run: ./gradlew build
 
   slackNotification:
+    needs: build_and_test
     name: Slack Notification
     runs-on: ubuntu-latest
     steps:
