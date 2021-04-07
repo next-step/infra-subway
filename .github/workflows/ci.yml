@@ -22,7 +22,7 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
-  slackNotification:
+  slack_notification:
     needs: build_and_test
     name: Slack Notification
     runs-on: ubuntu-latest
@@ -32,3 +32,15 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  docker_build_and_push:
+    needs: [build_and_test, slack_notification]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: fistkim101/infra-subway
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
