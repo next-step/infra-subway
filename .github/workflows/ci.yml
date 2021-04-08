@@ -1,4 +1,4 @@
-name: CI # aws test 4
+name: CI # aws test 5
 
 on:
   push:
@@ -21,7 +21,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '11'
-          distribution: 'adopt' # See 'Supported distributions' for available options
+          distribution: 'adopt'
 
       - name: grant execute permission for gradlew
         run: chmod +x gradlew
@@ -34,23 +34,6 @@ jobs:
     needs: [ build_and_test ]
     name: docker build and push
     steps:
-#      - name: checks-out this repository under GITHUB_WORKSPACE(enable to access)
-#        uses: actions/checkout@v2
-#        with:
-#          token: ${{ secrets.ACCESS_TOKEN }}
-#          submodules: recursive
-#
-#      - name: set up JDK 11
-#        uses: actions/setup-java@v2
-#        with:
-#          java-version: '11'
-#          distribution: 'adopt' # See 'Supported distributions' for available options
-#
-#      - name: grant execute permission for gradlew
-#        run: chmod +x gradlew
-#
-#      - name: build with Gradle
-#        run: ./gradlew build -x test
 
       - name: set up QEMU
         uses: docker/setup-qemu-action@v1
