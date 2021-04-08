@@ -1,4 +1,4 @@
-name: CI
+name: CI # aws test 1
 
 on:
   push:
