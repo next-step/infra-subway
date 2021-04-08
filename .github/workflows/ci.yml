@@ -73,6 +73,9 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/infra-subway:latest
 
+#      - name: docker container run
+#        run: docker run -d -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/infra-subway:latest
+
   slack_notification:
     runs-on: self-hosted
     needs: [ build_and_test, docker_image_build_and_push ]
