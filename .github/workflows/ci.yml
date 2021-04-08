@@ -8,7 +8,8 @@ on:
 
 jobs:
   build_and_test:
-    runs-on: [ self-hosted, ubuntu-latest ]
+#    runs-on: [ self-hosted, ubuntu-latest ]
+    runs-on: ubuntu-latest
     name: build_and_test
     steps:
       - name: checks-out this repository under GITHUB_WORKSPACE(enable to access)
@@ -30,7 +31,8 @@ jobs:
         run: ./gradlew build
 
   docker_image_build_and_push:
-    runs-on: [ self-hosted, ubuntu-latest ]
+#    runs-on: [ self-hosted, ubuntu-latest ]
+    runs-on: ubuntu-latest
     name: docker build and push
     steps:
       - name: checks-out this repository under GITHUB_WORKSPACE(enable to access)
@@ -74,7 +76,8 @@ jobs:
 
   slack_notification:
     needs: [ build_and_test, docker_image_build_and_push ]
-    runs-on: [ ubuntu-latest ]
+#    runs-on: [ ubuntu-latest ]
+    runs-on: ubuntu-latest
     name: slack notification
     steps:
       - uses: actions/checkout@v2
