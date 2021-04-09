@@ -11,12 +11,40 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          token: ${{secrets.CR_PAT}}
+          submodules: recursive
+          
+      - name: Set Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: adopt
+          java-version: 8
+          
+      - name: Build Gradle
+        run: ./gradlew build
+        
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Build and push
+        id: 
+        
+        uses: docker/build-push-action@v2
+        with:
+          context: ./
+          file: ./Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/infra-subway:latest
+
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
